@@ -266,6 +266,9 @@ con días de diferencia y no tienen antigüedad suficiente.
    cliente de Groq respeta la variable `GROQ_BASE_URL`, útil para probar sin clave contra
    un servidor simulado. Normalizar la respuesta (minúsculas, sin puntuación) antes de
    compararla con la etiqueta esperada.
+7. **Imagen base del devcontainer.** La imagen `python:3.11` pasó a Debian trixie, donde
+   la feature `docker-in-docker` no puede instalar Moby; por eso la imagen se fija en
+   `3.11-bookworm`.
 
 ## 8. Comportamiento esperado y valores de aceptación
 
