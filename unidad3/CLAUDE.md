@@ -327,8 +327,18 @@ comandos: si alguno cambia, avisar a la cátedra para actualizar la guía.
 
 ## 10. Estado de la implementación
 
-Pendiente: la plantilla todavía no fue generada. El diseño y las versiones de la
-sección 7 están validados con un prototipo fuera del repositorio.
+Plantilla validada el 19/10/2026 en un Codespace real con la configuración
+`unidad3-seminario-cd2` (imagen `python:3.11-bookworm`). Se verificaron:
+
+- UI de MLflow abierta desde el navegador (puerto 5000, pestaña PORTS).
+- Entrenamiento con `--max-depth 1` y `--max-depth 3`; métricas coinciden con §8.
+- Registro del modelo con alias `@champion` (`python -m src.registrar`).
+- Exportación del modelo a `modelo_exportado/` (`python -m src.exportar_modelo`).
+- API en `/docs` con predicciones correctas y HTTP 422 ante dato inválido.
+- Construcción y ejecución de la imagen Docker (`modelo-u3:1.0`); predicción repetida
+  contra el contenedor con resultado idéntico al de la API local.
+
+Pendiente de validar en Codespace: paso opcional de LLMOps (`comparar_prompts.py`).
 
 ## 11. Fuera de alcance (no generar)
 

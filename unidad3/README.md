@@ -135,3 +135,4 @@ git push
 | `403` o `Invalid Host header` al abrir MLflow en el navegador | El Codespace no fue creado con la configuración `unidad3-seminario-cd2` | Recreá el Codespace eligiendo `unidad3-seminario-cd2` en New with options |
 | `port is already allocated` en `docker run` | La API local sigue corriendo y ocupa el puerto 8000 | Detené la API con `Ctrl+C` antes de ejecutar `docker run` |
 | `Cannot connect to the Docker daemon` | El servicio de Docker aún no terminó de iniciar | Esperá un minuto y reintentá, o recreá el Codespace con la configuración `unidad3-seminario-cd2` |
+| `Unable to find image 'modelo-u3:1.0' locally` / `pull access denied` en `docker run` | La imagen no fue construida | Ejecutá `docker build -t modelo-u3:1.0 .` desde `unidad3/` y esperá a que termine sin `ERROR` |
