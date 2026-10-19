@@ -40,7 +40,7 @@ def registrar_en_mlflow(max_depth, modelo, X_ejemplo, accuracy, f1):
         mlflow.log_param("modelo", "DecisionTreeClassifier")
         mlflow.log_metric("accuracy", accuracy)
         mlflow.log_metric("f1_macro", f1)
-        warnings.filterwarnings("ignore", message="Inferred schema contains integer column")  # el target Iris es int; el aviso es inofensivo
+        warnings.filterwarnings("ignore", message="Hint: Inferred schema contains integer column")  # el target Iris es int; el aviso es inofensivo
         mlflow.sklearn.log_model(
             modelo,
             name=NOMBRE_ARTEFACTO_MODELO,
