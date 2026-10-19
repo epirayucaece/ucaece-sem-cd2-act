@@ -1,9 +1,7 @@
 import os
 import re
 import sys
-import tempfile
 import time
-from pathlib import Path
 
 import mlflow
 import mlflow.groq
@@ -60,16 +58,6 @@ def clasificar_resena(cliente, plantilla_texto, resena):
     return texto, tokens, latencia
 
 
-def guardar_plantilla_como_artefacto(nombre, plantilla_texto):
-    with tempfile.NamedTemporaryFile(
-        mode="w", suffix=f"_{nombre}.txt", delete=False, encoding="utf-8"
-    ) as f:
-        f.write(plantilla_texto)
-        ruta_temp = f.name
-    mlflow.log_artifact(ruta_temp, artifact_path="plantilla")
-    Path(ruta_temp).unlink()
-
-
 def evaluar_plantilla(cliente, nombre, plantilla_texto):
     aciertos = 0
     tokens_total = 0
@@ -94,13 +82,13 @@ def evaluar_plantilla(cliente, nombre, plantilla_texto):
         mlflow.log_metric("tasa_exito", tasa)
         mlflow.log_metric("tokens_totales", tokens_total)
         mlflow.log_metric("latencia_media_s", round(latencia_media, 3))
-        guardar_plantilla_como_artefacto(nombre, plantilla_texto)
+        mlflow.log_text(plantilla_texto, f"plantilla/{nombre}.txt")
 
     print(f"Plantilla {nombre} · tasa_exito={tasa:.3f} · tokens={tokens_total} · latencia_media={latencia_media:.3f} s")
 
 
 def verificar_api_key():
-    if not os.environ.get("GROQ_API_KEY") and not os.environ.get("GROQ_BASE_URL"):
+    if not os.environ.get("GROQ_API_KEY"):
         print("No encontré GROQ_API_KEY. Copiá .env.example a .env y completá tu clave.")
         sys.exit(1)
 

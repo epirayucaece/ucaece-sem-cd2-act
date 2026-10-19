@@ -6,6 +6,3 @@ modelo_exportado/
 __pycache__/
 *.pyc
 *.pyo
-capturas/*
-!capturas/.gitkeep
-docs/

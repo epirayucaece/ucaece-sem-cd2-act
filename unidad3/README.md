@@ -38,7 +38,7 @@ Necesitás dos terminales abiertas en el Codespace.
 mlflow ui
 ```
 
-Cuando aparezca el mensaje `Serving on http://127.0.0.1:5000`, abrí la pestaña **PORTS**,
+Cuando aparezca el mensaje `Uvicorn running on http://127.0.0.1:5000`, abrí la pestaña **PORTS**,
 buscá el puerto 5000 y hacé clic en el globo para abrirlo en el navegador.
 
 **Terminal 2 — entrenar y registrar:**
@@ -132,3 +132,6 @@ git push
 | `No encontré 'modelo_exportado/'` | La carpeta del modelo exportado no existe | Ejecutá primero `python -m src.exportar_modelo` |
 | `No encontré GROQ_API_KEY` | Falta la variable de entorno | Copiá `.env.example` a `.env` y completá tu clave |
 | `COPY modelo_exportado: not found` en `docker build` | La carpeta no existe al construir la imagen | Ejecutá `python -m src.exportar_modelo` antes del build |
+| `403` o `Invalid Host header` al abrir MLflow en el navegador | El Codespace no fue creado con la configuración `unidad3-seminario-cd2` | Recreá el Codespace eligiendo `unidad3-seminario-cd2` en New with options |
+| `port is already allocated` en `docker run` | La API local sigue corriendo y ocupa el puerto 8000 | Detené la API con `Ctrl+C` antes de ejecutar `docker run` |
+| `Cannot connect to the Docker daemon` | El servicio de Docker aún no terminó de iniciar | Esperá un minuto y reintentá, o recreá el Codespace con la configuración `unidad3-seminario-cd2` |
